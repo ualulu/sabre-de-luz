@@ -1,3 +1,8 @@
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -259,20 +264,49 @@ h1 {
 /* Responsividade */
 @media (max-width: 768px) {
   h1 {
-    font-size: 2rem;
+    font-size: 1.5rem;
+    top: 10px;
   }
 
   .instructions {
-    font-size: 0.9rem;
-    padding: 0 20px;
+    font-size: 0.85rem;
+    top: 60px;
+    padding: 0 10px;
   }
 
   .lightsaber {
-    transform: scale(0.8) rotate(-45deg);
+    transform: translate(0, 0) scale(0.6) rotate(-45deg);
+  }
+
+  .handle {
+    width: 30px;
+    height: 150px;
+  }
+
+  .blade {
+    height: 200px;
+    bottom: 150px;
+  }
+
+  .controls {
+    flex-direction: column;
+    bottom: 20px;
+    gap: 10px;
+    align-items: center;
   }
 
   .control-button {
-    padding: 10px 20px;
+    padding: 10px 16px;
     font-size: 0.9rem;
+    width: 160px;
+    text-align: center;
+  }
+
+  body,
+  .container {
+    overflow: hidden;
+    height: 100vh;
   }
 }
+
+
