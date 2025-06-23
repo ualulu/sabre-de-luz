@@ -14,19 +14,19 @@ toggleColor.addEventListener('click', () => {
   lightsaber.classList.toggle('red', isRed);
 });
 
-// Ligar/desligar
+// Ligar/desligar lâmina
 toggleBlade.addEventListener('click', () => {
   bladeOn = !bladeOn;
   blade.style.display = bladeOn ? 'block' : 'none';
-  toggleBlade.textContent = bladeOn ? 'Desligar Sabre' : 'Ligar Sabre';
+  toggleBlade.textContent = bladeOn ? 'Desligar' : 'Ligar';
 });
 
-// Atualiza posição
+// Atualiza a posição do sabre
 function updatePosition() {
   lightsaber.style.transform = `translate(${currentX}px, ${currentY}px) rotate(-45deg)`;
 }
 
-// Drag
+// Funções de arraste
 function startDrag(x, y) {
   isDragging = true;
   startX = x - offsetX;
@@ -47,14 +47,14 @@ function endDrag() {
 }
 
 // Mouse
-lightsaber.addEventListener('mousedown', e => startDrag(e.clientX, e.clientY));
-document.addEventListener('mousemove', e => dragMove(e.clientX, e.clientY));
+lightsaber.addEventListener('mousedown', (e) => startDrag(e.clientX, e.clientY));
+document.addEventListener('mousemove', (e) => dragMove(e.clientX, e.clientY));
 document.addEventListener('mouseup', endDrag);
 
-// Toque
-lightsaber.addEventListener('touchstart', e => startDrag(e.touches[0].clientX, e.touches[0].clientY));
-document.addEventListener('touchmove', e => {
+// Toque (mobile)
+lightsaber.addEventListener('touchstart', (e) => startDrag(e.touches[0].clientX, e.touches[0].clientY));
+document.addEventListener('touchmove', (e) => {
   dragMove(e.touches[0].clientX, e.touches[0].clientY);
-  e.preventDefault();
+  e.preventDefault(); // Evita scroll da página
 }, { passive: false });
 document.addEventListener('touchend', endDrag);
