@@ -1,37 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sabre de Luz</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="container">
-    <h1>Sabre de Luz Interativo</h1>
-    <p class="instructions">
-      🌟 Arraste o sabre com o dedo<br />
-      🎨 Altere a cor ou desligue abaixo
-    </p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sabre de Luz</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="container">
+        <h1>Seja bem-vindo França</h1>
+        <div class="lightsaber" id="lightsaber">
+          <div class="handle">
+            <div class="handle-grip"></div>
+            <div class="handle-grip"></div>
+            <div class="handle-grip"></div>
+            <div class="activation-button"></div>
+          </div>
+          <div class="blade" id="blade">
+            <div class="blade-core"></div>
+            <div class="blade-glow"></div>
+          </div>
+        </div>
 
-    <div class="lightsaber" id="lightsaber">
-      <div class="handle">
-        <div class="handle-grip"></div>
-        <div class="handle-grip"></div>
-        <div class="handle-grip"></div>
-        <div class="activation-button"></div>
-      </div>
-      <div class="blade" id="blade">
-        <div class="blade-core"></div>
-        <div class="blade-glow"></div>
+        <div class="controls">
+          <button id="toggleColor" class="control-button">Alternar Cor</button>
+          <button id="toggleBlade" class="control-button">Ligar/Desligar</button>
+        </div>
       </div>
     </div>
+    <script src="script.js"></script>
+  </body>
+</html>
 
-    <div class="controls">
-      <button id="toggleColor" class="control-button">Alternar Cor</button>
-      <button id="toggleBlade" class="control-button">Desligar Sabre</button>
-    </div>
-  </div>
 
   <script src="script.js"></script>
 </body>
