@@ -198,6 +198,9 @@ h1 {
 .control-button:active {
   transform: translateY(0);
 }
+.lightsaber {
+  touch-action: none;
+}
 
 /* Animações */
 @keyframes textGlow {
@@ -289,24 +292,31 @@ h1 {
   }
 
   .controls {
-    flex-direction: column;
-    bottom: 20px;
-    gap: 10px;
-    align-items: center;
-  }
-
-  .control-button {
-    padding: 10px 16px;
-    font-size: 0.9rem;
-    width: 160px;
-    text-align: center;
-  }
+  flex-direction: column;
+  position: fixed;
+  bottom: 20px;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+  z-index: 20;
+}
+  
+ .control-button {
+  padding: 12px 20px;
+  font-size: 1rem;
+  width: 80%;
+  max-width: 240px;
+}
 
   body,
   .container {
     overflow: hidden;
     height: 100vh;
   }
+  .activation-button {
+  top: 120px; /* antes era 160px — reduzido para caber em cabos menores */
+}
+
 }
 
 
