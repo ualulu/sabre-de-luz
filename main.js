@@ -5,12 +5,8 @@ const toggleBlade = document.getElementById('toggleBlade');
 
 let isRed = false;
 let bladeOn = true;
-
-// Estado de arraste
 let isDragging = false;
-let startX, startY;
-let currentX = 0, currentY = 0;
-let offsetX = 0, offsetY = 0;
+let startX, startY, currentX = 0, currentY = 0, offsetX = 0, offsetY = 0;
 
 // Alternar cor
 toggleColor.addEventListener('click', () => {
@@ -18,57 +14,47 @@ toggleColor.addEventListener('click', () => {
   lightsaber.classList.toggle('red', isRed);
 });
 
-// Ligar/desligar sabre
+// Ligar/desligar
 toggleBlade.addEventListener('click', () => {
   bladeOn = !bladeOn;
   blade.style.display = bladeOn ? 'block' : 'none';
   toggleBlade.textContent = bladeOn ? 'Desligar Sabre' : 'Ligar Sabre';
 });
 
-// Função para atualizar posição
+// Atualiza posição
 function updatePosition() {
   lightsaber.style.transform = `translate(${currentX}px, ${currentY}px) rotate(-45deg)`;
 }
 
+// Drag
+function startDrag(x, y) {
+  isDragging = true;
+  startX = x - offsetX;
+  startY = y - offsetY;
+}
+
+function dragMove(x, y) {
+  if (!isDragging) return;
+  currentX = x - startX;
+  currentY = y - startY;
+  offsetX = currentX;
+  offsetY = currentY;
+  updatePosition();
+}
+
+function endDrag() {
+  isDragging = false;
+}
+
 // Mouse
-lightsaber.addEventListener('mousedown', (e) => {
-  isDragging = true;
-  startX = e.clientX - offsetX;
-  startY = e.clientY - offsetY;
-});
+lightsaber.addEventListener('mousedown', e => startDrag(e.clientX, e.clientY));
+document.addEventListener('mousemove', e => dragMove(e.clientX, e.clientY));
+document.addEventListener('mouseup', endDrag);
 
-document.addEventListener('mousemove', (e) => {
-  if (!isDragging) return;
+// Toque
+lightsaber.addEventListener('touchstart', e => startDrag(e.touches[0].clientX, e.touches[0].clientY));
+document.addEventListener('touchmove', e => {
+  dragMove(e.touches[0].clientX, e.touches[0].clientY);
   e.preventDefault();
-  currentX = e.clientX - startX;
-  currentY = e.clientY - startY;
-  offsetX = currentX;
-  offsetY = currentY;
-  updatePosition();
-});
-
-document.addEventListener('mouseup', () => {
-  isDragging = false;
-});
-
-// Touch
-lightsaber.addEventListener('touchstart', (e) => {
-  isDragging = true;
-  const touch = e.touches[0];
-  startX = touch.clientX - offsetX;
-  startY = touch.clientY - offsetY;
-});
-
-document.addEventListener('touchmove', (e) => {
-  if (!isDragging) return;
-  const touch = e.touches[0];
-  currentX = touch.clientX - startX;
-  currentY = touch.clientY - startY;
-  offsetX = currentX;
-  offsetY = currentY;
-  updatePosition();
-});
-
-document.addEventListener('touchend', () => {
-  isDragging = false;
-});
+}, { passive: false });
+document.addEventListener('touchend', endDrag);
